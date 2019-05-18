@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Stake Holder Engegement Log</h1>
+  <form action="" method="post" novalidate>
+    {{ form.hidden_tag() }}
+    <p>
+      {{ form.name.label }}<br>
+      {{ form.name(size=40) }}
+    <p/>
+    <p>
+      {{ form.rank.label }}<br>
+      {{ form.rank(size=20) }}
+      <p/>
+      <p>{{ form.submitt() }} <p/>
+  </form>
+{% endblock %}
