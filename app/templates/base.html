@@ -1,3 +1,5 @@
+{% extends 'bootstrap/base.html' %}
+
 <html>
     <head>
         {% if title %}
@@ -7,12 +9,14 @@
         {% endif %}
     </head>
     <body>
+      {% block navbar %}
         <div>
             Microblog:
             <a href="{{ url_for('index') }}">Home</a>
             <a href="{{ url_for('login') }}">Login</a>
             <a href="{{ url_for('test') }}">Test</a>
         </div>
+        {% endblock %}
         <hr>
         {% with messages = get_flashed_messages() %}
         {% if messages %}
