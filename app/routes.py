@@ -14,17 +14,7 @@ from app import db
 @app.route('/index')
 @login_required
 def index():
-    posts = [
-        {
-            'author': {'username': 'John'},
-            'body': 'Beautiful day in Portland!'
-        },
-        {
-            'author': {'username': 'Susan'},
-            'body': 'The Avengers movie was so cool!'
-        }
-    ]
-    return render_template('index.html', title='Home', posts=posts)
+    return render_template('index.html', title='Home')
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -55,6 +45,16 @@ def logout():
 def test():
     form = NameForm()
     return render_template('test.html', title='not sure', form=form)
+
+@app.Route('/add_recipe')
+def add_recipe():
+    if form.validate_on_submit():
+        recipe = Recipes(recipe=form.recipe.data, description=form.description.data)
+        db.session.add(recipe)
+        db.commit()
+        flash("Recipe added to the vault! WhOop!")
+        return redirect(url_for('index'))
+    return render_template('add_recipe.html', title='Add Recipes', form=form)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():

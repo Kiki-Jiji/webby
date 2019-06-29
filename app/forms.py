@@ -10,6 +10,11 @@ class LoginForm(FlaskForm):
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
 
+class Recipe(FlaskForm):
+    recipe = StringField('Name', validators=[DataRequired()])
+    description = StringField('Description', validators=[DataRequired()])
+    sumbit = SubmitField('Enter Recipe')
+
 class NameForm(FlaskForm):
     name= StringField('What is your name?', validators=[DataRequired()])
     rank= StringField('What is your role?', validators=[DataRequired()])
