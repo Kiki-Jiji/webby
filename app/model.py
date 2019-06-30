@@ -23,5 +23,5 @@ def load_user(id):
     return User.query.get(int(id))
 
 class Recipes(db.Model):
-    recipe = db.Column(db.String(64))
+    recipe = db.Column(db.String(64), primary_key=True)
     description = db.Column(db.String(128))

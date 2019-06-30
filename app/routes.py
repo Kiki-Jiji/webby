@@ -1,6 +1,6 @@
 from flask import render_template, flash, redirect, url_for
 from app import app
-from app.forms import LoginForm, NameForm, RegistrationForm
+from app.forms import LoginForm, NameForm, RegistrationForm, Recipe
 from flask_login import current_user, login_user
 from app.model import User
 from flask_login import login_required
@@ -46,8 +46,9 @@ def test():
     form = NameForm()
     return render_template('test.html', title='not sure', form=form)
 
-@app.Route('/add_recipe')
+@app.route('/add_recipe')
 def add_recipe():
+    form = Recipe()
     if form.validate_on_submit():
         recipe = Recipes(recipe=form.recipe.data, description=form.description.data)
         db.session.add(recipe)
